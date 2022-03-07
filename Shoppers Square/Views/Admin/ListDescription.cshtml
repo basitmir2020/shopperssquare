@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProductDescriptionModel>
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Description List";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">List Product Description</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>S.No</th>
+                                <th>Product Name</th>
+                                <th>Status</th>
+                                <th>View</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            @if (Model.Any())
+                            {
+                                var counter = 0;
+                                foreach (var description in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @(++counter)
+                                        </td>
+                                        <td>
+                                            @description.Product.ProductName
+                                        </td>
+                                        <td>
+                                            @if (description.isActive == 0)
+                                            {
+                                                <span class="btn-danger rounded-pill badge-pill btn-sm">Pending</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-success rounded-pill badge-pill btn-sm">Activated</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-action="ViewDescription" asp-controller="Admin" asp-route-id="@description.Id" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                                <i style="color:white;" class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="EditDescription" asp-controller="Admin" asp-route-id="@description.Id" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                                <i style="color:white;" class="fa fa-pen"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="DeleteDescription" asp-controller="Admin" asp-route-id="@description.Id" style="cursor:pointer;" class="btn btn-circle btn-danger">
+                                                <i style="color:white;" class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

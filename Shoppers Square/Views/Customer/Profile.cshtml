@@ -1,0 +1,45 @@
+﻿@model EditUserViewModel
+@{
+    Layout = "_Customer";
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Update Profile</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="hidden" asp-for="Id"/>
+                                <label asp-for="Email"></label>
+                                <input asp-for="Email" class="form-control" readonly placeholder="Enter Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Name"></label>
+                                <input asp-for="Name" class="form-control" placeholder="Enter New Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Phone"></label>
+                                <input asp-for="Phone" class="form-control" placeholder="Enter New Phone">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6" style="margin-top:31px;">
+                                <input type="submit" value="Update Profile" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

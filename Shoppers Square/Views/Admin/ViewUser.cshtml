@@ -1,0 +1,58 @@
+﻿@model ViewUserViewModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "User Details";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">User Details</h6>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Id">Customer Id</label>
+                            <input readonly asp-for="Id" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Name">Customer Name</label>
+                            <input readonly asp-for="Name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Email">Customer Email</label>
+                            <input readonly asp-for="Email" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="EmailStatus">Email Status</label>
+                            @if (Model.EmailStatus == true)
+                            {
+                                <input readonly value="Confirmed" class="form-control">
+                            }
+                            else
+                            {
+                                <input readonly value="Not Confirmed" class="form-control">
+                            }
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Phone">Phone Number</label>
+                            <input readonly asp-for="Phone" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="UserName">UserName</label>
+                            <input readonly asp-for="UserName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <a asp-action="ListUsers" class="btn btn-primary">List Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model SubCategoryModel
+
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Delete Category";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Delete Product Category</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="CategoryId">Category</label>
+                                <select asp-for="CategoryId"
+                                        class="custom-select" 
+                                        asp-items="ViewBag.ListCategories">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="SubCategoryName">SubCategory Name</label>
+                                <input readonly asp-for="SubCategoryName" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">SubCategory Slug</label>
+                                <input readonly type="text" asp-for="Slug" class="form-control">
+                                <span asp-validation-for="Slug" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="isActive">SubCategory Status</label>
+                                @if (Model.isActive == 0)
+                                {
+                                    <input readonly value="Pending" type="text" class="form-control">
+                                }
+                                else
+                                {
+                                    <input readonly value="Active" type="text" class="form-control">
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Delete SubCategory" class="btn btn-danger">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

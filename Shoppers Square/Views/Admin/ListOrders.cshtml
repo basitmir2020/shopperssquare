@@ -1,0 +1,244 @@
+﻿@model List<OrderModel>
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "List Orders";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">List Orders</h6>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        var counter = 0;
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>OrderId</th>
+                                    <th>City</th>
+                                    <th>Pincode</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>User</th>
+                                    <th>Items</th>
+                                    <th>Del/Enq</th>
+                                </tr>
+                                @foreach (var order in Model)
+                                {
+                                    <tr>
+                                        <td>@(++counter)</td>
+                                        <td>#Shop_Square@(order.Id)</td>
+                                        <td>
+                                            @order.City
+                                        </td>
+                                        <td>
+                                            @order.Pincode
+                                        </td>
+                                        <td>@order.Address</td>
+                                        <td>
+                                            @if (order.OrderStatus == "In Process")
+                                            {
+                                                <span onclick="OrderStatus(@order.Id)" style="cursor:pointer;" class="btn-info rounded-pill badge-pill btn-sm">In Procss</span>
+                                            }
+                                            else if (order.OrderStatus == "Shipped")
+                                            {
+                                                <span onclick="OrderStatus(@order.Id)" style="cursor:pointer;" class="btn-primary rounded-pill badge-pill btn-sm">Shipped</span>
+                                            }
+                                            else if (order.OrderStatus == "Delivered")
+                                            {
+                                                <span onclick="OrderStatus(@order.Id)" style="cursor:pointer;" class="btn-success rounded-pill badge-pill btn-sm">Delivered</span>
+                                            }
+                                            else if (order.OrderStatus == "Returned")
+                                            {
+                                                <span onclick="OrderStatus(@order.Id)" style="cursor:pointer;" class="btn-info rounded-pill badge-pill btn-sm">Returned</span>
+                                            }
+                                            else if (order.OrderStatus == "Refund")
+                                            {
+                                                <span onclick="OrderStatus(@order.Id)" style="cursor:pointer;" class="btn-dark rounded-pill badge-pill btn-sm">Refund</span>
+                                            }
+                                            else if (order.OrderStatus == "Replacement")
+                                            {
+                                                <span onclick="OrderStatus(@order.Id)" style="cursor:pointer;" class="btn-info rounded-pill badge-pill btn-sm">Replacement</span>
+                                            }
+                                            else if (order.OrderStatus == "Cancel")
+                                            {
+                                                <span class="btn-danger rounded-pill badge-pill btn-sm">Cancelled</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-success rounded-pill badge-pill btn-sm">Completed</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-action="ViewUser" asp-controller="Admin" asp-route-id="@(order.UserId)" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                                <i style="color:white;" class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="ViewOrder" asp-controller="Admin" asp-route-id="@(order.Id)" style="cursor:pointer;" class="btn btn-circle btn-info">
+                                                <i style="color:white;" class="fa fa-cart-plus"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @if (order.OrderStatus == "Returned" || order.OrderStatus == "Cancel" || order.OrderStatus == "Refund" || order.OrderStatus == "Replacement")
+                                            {
+                                                <a onclick="EnquiryOrder(@(order.Id))" style="cursor:pointer;" class="btn btn-circle btn-warning">
+                                                    <i style="color:white;" class="fa fa-times"></i>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a onclick="deleteOrder(@(order.Id))" style="cursor:pointer;" class="btn btn-circle btn-danger">
+                                                    <i style="color:white;" class="fa fa-trash"></i>
+                                                </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                <div class="alert alert-danger text-center" role="alert">
+                    <h4 class="alert-heading">No Order Found!</h4>
+                </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="Partials/_delete" />
+<partial name="Partials/_Enquiry" />
+<partial name="Partials/_Status" />
+<script type="text/javascript">
+    function deleteOrder(id) {
+        $("#deleteHeadding").html("Delete Order");
+        $("#deleteM").modal("show");
+        $("#delBtn").on("click", function (event) {
+            event.preventDefault();
+            deleteEnquiryOrder(id);
+        });
+    }
+    function EnquiryOrder(id) {
+        $.ajax({
+            url: "http://localhost:5000/Admin/EnquiryOrder",
+            type: "POST",
+            data: { ENQUIRYORDERID: id },
+            beforeSend: function () { },
+            success: function (o) {
+                $("#EnquiryHeadding").html("Order Enquiry");
+                $("#EnquiryModel").modal("show");
+                $("#orderId").val("#Shop_Square" + o.orderId);
+                $("#orderStatus").val(o.orderStatus);
+                $("#Description").val(o.description);
+            },
+            complete: function () {
+                $("#deleteBtn").on("click", function (event) {
+                    event.preventDefault();
+                    $("#EnquiryModel").modal("toggle");
+                    deleteEnquiryOrder(id);
+                });
+            }
+        });
+    }
+    function deleteEnquiryOrder(id) {
+        $.ajax({
+            url: "http://localhost:5000/Admin/DeleteOrder",
+            type: "POST",
+            data: { DELETEORDERID: id },
+            beforeSend: function () { },
+            success: function (o) {
+                if (o === "1") {
+                    $("#deleteM").modal('toggle');
+                    swal({
+                        title: "Success!",
+                        text: "Order Deleted Successfully!",
+                        type: "success"
+                    });
+                    location.reload();
+                } else {
+                    swal({
+                        title: "Error!",
+                        text: o,
+                        type: "error"
+                    });
+                }
+            },
+            complete: function () { }
+        });
+    }
+    function OrderStatus(id) {
+        $("#StatusHeadding").html("Order Status");
+        $("#StatusModel").modal("show");
+        $(".btn-outline-primary").on("click", function (event) {
+            event.preventDefault();
+            $.post("http://localhost:5000/Admin/OrderStatus",
+                { ORDERID: id, STATUS: "Shipped" }, function (o) {
+                    if (o === "1") {
+                        $("#StatusModel").modal('toggle');
+                        swal({
+                            title: "Success!",
+                            text: "Status Changed Successfully!",
+                            type: "success"
+                        });
+                        location.reload();
+                    } else {
+                        swal({
+                            title: "Error!",
+                            text: o,
+                            type: "error"
+                        });
+                    }
+                });
+        });
+        $(".btn-outline-info").on("click", function (event) {
+            event.preventDefault();
+            $.post("http://localhost:5000/Admin/OrderStatus",
+                { ORDERID: id, STATUS: "Delivered" }, function (o) {
+                    if (o === "1") {
+                        $("#StatusModel").modal('toggle');
+                        swal({
+                            title: "Success!",
+                            text: "Status Changed Successfully!",
+                            type: "success"
+                        });
+                        location.reload();
+                    } else {
+                        swal({
+                            title: "Error!",
+                            text: o,
+                            type: "error"
+                        });
+                    }
+                });
+        });
+        $(".btn-outline-success").on("click", function (event) {
+            event.preventDefault();
+            $.post("http://localhost:5000/Admin/OrderStatus",
+                { ORDERID: id, STATUS: "Completed" }, function (o) {
+                    if (o === "1") {
+                        $("#StatusModel").modal('toggle');
+                        swal({
+                            title: "Success!",
+                            text: "Status Changed Successfully!",
+                            type: "success"
+                        });
+                        location.reload();
+                    } else {
+                        swal({
+                            title: "Error!",
+                            text: o,
+                            type: "error"
+                        });
+                    }
+                });
+        });
+
+    }
+</script>

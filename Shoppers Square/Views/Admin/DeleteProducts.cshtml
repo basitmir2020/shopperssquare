@@ -1,0 +1,77 @@
+﻿@model NewProductViewModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Delete Products";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Delete Product</h6>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="CategoryId">Select Category</label>
+                                <select asp-for="CategoryId"
+                                        class="custom-select" asp-items="ViewBag.ListCategories">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="SubCategoryId">SubCategory Name</label>
+                                <select asp-for="SubCategoryId"
+                                        class="custom-select"
+                                        asp-items="ViewBag.ListSubCategories">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductName">Product Name</label>
+                                <input readonly type="text" asp-for="ProductName" class="form-control" placeholder="Enter Product Name" onkeyup="generateSlug($(this).val())">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">Product Slug</label>
+                                <input readonly type="text" asp-for="Slug" class="form-control" placeholder="Enter Product Slug">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductBrand">Product Brand</label>
+                                <input readonly type="text" asp-for="ProductBrand" class="form-control" placeholder="Enter Product Brand">
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="OrginalPrice">Product OrginalPrice</label>
+                                <input readonly type="text" asp-for="OrginalPrice" class="form-control" placeholder="Enter Product OrginalPrice">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="DiscountPrice">Product DiscountPrice</label>
+                                <input readonly type="text" asp-for="DiscountPrice" class="form-control" placeholder="Enter Product DiscountPrice">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="isActive">Product Status</label>
+                                @if (Model.isActive == 0)
+                                {
+                                    <input readonly value="Pending" type="text" class="form-control">
+                                }
+                                else
+                                {
+                                    <input readonly value="Active" type="text" class="form-control">
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Delete Product" class="btn btn-danger">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

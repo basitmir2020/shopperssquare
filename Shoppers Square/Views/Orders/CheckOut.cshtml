@@ -1,0 +1,107 @@
+﻿@model CheckOutViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Check Out";
+}
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> Home</a>
+                    <span>Shopping cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <form method="Post" asp-controller="Orders" asp-action="CheckOut" class="checkout__form">
+            <input type="hidden" asp-for="Id"/>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h5>Billing detail</h5>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="checkout__form__input">
+                                <label asp-for="Name">Name</label>
+                                <input asp-for="Name" type="text" placeholder="Enter Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <label asp-for="Phone">Phone</label>
+                                <input asp-for="Phone" type="text" placeholder="Enter Phone Number">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <label asp-for="Email">Email</label>
+                                <input asp-for="Email" type="text" placeholder="Enter Email Address">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <label asp-for="City">Town/City</label>
+                                <input asp-for="City" type="text" placeholder="Enter City/Town">
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="checkout__form__input">
+                                <label asp-for="Pincode">Postcode/Zip</label>
+                                <input asp-for="Pincode" type="text" placeholder="Enter Postcode/Zip">
+                                <span asp-validation-for="Pincode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="checkout__form__input">
+                                <label asp-for="Address">Address</label>
+                                <input asp-for="Address" type="text" placeholder="Enter Address">
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout__order">
+                        <h5>Your order</h5>
+                        <div class="checkout__order__product">
+                            <ul>
+                                <li>
+                                    <span class="top__text">Product</span>
+                                    <span class="top__text__right">Total</span>
+                                </li>
+                                @foreach (var items in Model.ShoppingCart.ShoppingCartItems)
+                                {
+                                    <li>@(items.Product.ProductName)<span>@((items.Amount*items.Product.DiscountPrice).ToString("c"))</span></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="checkout__order__total">
+                            <ul>
+                                <li>Total <span>@Model.ShoppingCartTotal.ToString("c")</span></li>
+                            </ul>
+                        </div>
+                        <div class="checkout__order__widget">
+                            <label asp-for="PaymentType">
+                                Cash On Delivery
+                                <input type="checkbox" asp-for="PaymentType">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="site-btn">Place oder</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Checkout Section End -->

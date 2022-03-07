@@ -1,0 +1,76 @@
+﻿@model ProductModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "View Products";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">View Product</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST">
+                        <div class="form-row mb-1" style="margin-top:-2rem">
+                            <img src="@Model.UrlImage" width="150"  class="rounded  mx-auto img-fluid">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="SubCategory.Category.Id">Select Category</label>
+                                <select asp-for="SubCategory.Category.Id" disabled
+                                        class="custom-select" asp-items="ViewBag.ListCategories">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="SubCategoryId">SubCategory Name</label>
+                                <select asp-for="SubCategoryId" disabled
+                                        class="custom-select"
+                                        asp-items="ViewBag.ListSubCategories">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductName">Product Name</label>
+                                <input readonly type="text" asp-for="ProductName" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">Product Slug</label>
+                                <input readonly type="text" asp-for="Slug" class="form-control" placeholder="Enter Product Slug">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductBrand">Product Brand</label>
+                                <input readonly type="text" asp-for="ProductBrand" class="form-control" placeholder="Enter Product Brand">
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="OrginalPrice">Product OrginalPrice</label>
+                                <input readonly type="text" asp-for="OrginalPrice" class="form-control" placeholder="Enter Product OrginalPrice">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="DiscountPrice">Product DiscountPrice</label>
+                                <input readonly type="text" asp-for="DiscountPrice" class="form-control" placeholder="Enter Product DiscountPrice">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="isActive">Product Status</label>
+                                <select disabled asp-for="isActive"
+                                        class="custom-select"
+                                        asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="List Products" class="btn btn-secondary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

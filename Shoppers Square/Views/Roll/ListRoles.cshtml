@@ -1,0 +1,55 @@
+﻿@model IEnumerable<IdentityRole>
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "List Role";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">List Roles</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>S.No</th>
+                                <th>Role Name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            @if (Model.Any())
+                            {
+                                var counter = 0;
+                                foreach (var role in Model)
+                                {
+
+                                <tr>
+                                    <td>
+                                        @(++counter)
+                                    </td>
+                                    <td>
+                                        @role.Name
+                                    </td>
+                                    <td>
+                                        <a asp-action="EditRole" asp-controller="Roll" asp-route-id="@role.Id" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                            <i id="update" style="color:white;" class="fa fa-pen"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <p style="cursor:pointer;" class="btn btn-circle btn-danger">
+                                            <i id="delete" style="color:white;" class="fa fa-trash"></i>
+                                        </p>
+                                    </td>
+                                </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

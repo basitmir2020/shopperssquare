@@ -1,0 +1,33 @@
+﻿@model ForgotPasswordViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Confirm Account";
+
+}
+<section class="vh-10" style="background-color: #f8f9fa;">
+    <div class="container py-5 h-50">
+        <div class="row d-flex justify-content-center align-items-center h-20">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-5"><i class="fa fa-envelope"></i> Confirm Account</h3>
+                        @if(TempData["ErrorMessage"] != null){
+                            <div class="alert alert-success">
+                               @TempData["ErrorMessage"]
+                        </div>
+                        }
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <form method="post" asp-action="ConfirmAccount" asp-controller="Account">
+                            <div class="form-group">
+                                <label asp-for="Email">Email</label>
+                                <input asp-for="Email" type="text" class="form-control" id="txtEmail" placeholder="Enter email">
+                                <span asp-validation-for="Email" class="text-danger form-text"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

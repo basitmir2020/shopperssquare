@@ -1,0 +1,96 @@
+﻿@model List<OrderModel>
+@{
+    Layout = "_Customer";
+    ViewData["Title"] = "Orders";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        var counter = 0;
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>OrderId</th>
+                                    <th>City</th>
+                                    <th>Address</th>
+                                    <th>Pincode</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                                @foreach (var order in Model)
+                                {
+                                    <tr>
+                                        <td>@(++counter)</td>
+                                        <td>#Shop_Square@(order.Id)</td>
+                                        <td>
+                                            @order.City
+                                        </td>
+                                        <td>
+                                            @order.Address
+                                        </td>
+                                        <td>
+                                            @order.Pincode
+                                        </td>
+                                        <td>
+                                            @if (order.OrderStatus == "In Process")
+                                            {
+                                                <span class="btn-info rounded-pill badge-pill btn-sm">In Procss</span>
+                                            }
+                                            else if (order.OrderStatus == "Shipped")
+                                            {
+                                                <span class="btn-primary rounded-pill badge-pill btn-sm">Shipped</span>
+                                            }
+                                            else if (order.OrderStatus == "Delivered")
+                                            {
+                                                <span class="btn-success rounded-pill badge-pill btn-sm">Delivered</span>
+                                            }
+                                            else if (order.OrderStatus == "Returned")
+                                            {
+                                                <span class="btn-warning rounded-pill badge-pill btn-sm">Returned</span>
+                                            }
+                                            else if (order.OrderStatus == "Refund")
+                                            {
+                                                <span class="btn-dark rounded-pill badge-pill btn-sm">Refund</span>
+                                            }
+                                            else if (order.OrderStatus == "Replacement")
+                                            {
+                                                <span class="btn-secondary rounded-pill badge-pill btn-sm">Replacement</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-danger rounded-pill badge-pill btn-sm">Cancelled</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-action="ViewOrder" asp-controller="Customer" asp-route-id="@(order.Id)" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                                <i style="color:white;" class="fa fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                <div class="alert alert-danger text-center" role="alert">
+                    <h4 class="alert-heading">No Order Found!</h4>
+                    <p>Click Here To Order <a asp-controller="Home" asp-action="Index">Products </a></p>
+                </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

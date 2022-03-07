@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Users List";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Users List</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>S.No</th>
+                            <th>Email</th>
+                            <th>Email Status</th>
+                            <th>View</th>
+                        </tr>
+                        @if (Model.Any())
+                        {
+                            var counter = 0;
+                            foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @(++counter)
+                                    </td>
+                                    <td>
+                                        @user.UserName
+                                    </td>
+                                    <td>
+                                        @if (@user.EmailConfirmed == true)
+                                        {
+                                            <span class="btn-success rounded-pill badge-pill btn-sm">Confirmed</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn-danger rounded-pill badge-pill btn-sm">Not Confirmed</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-action="ViewUser" asp-controller="Admin" asp-route-id="@user.Id" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                            <i style="color:white;" class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

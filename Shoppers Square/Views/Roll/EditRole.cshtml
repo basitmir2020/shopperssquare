@@ -1,0 +1,75 @@
+﻿@model RoleViewModel
+
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Edit Role";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Role</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label asp-for="RoleName">Edit Role</label>
+                                <input asp-for="RoleName" type="text" class="form-control" placeholder="Enter Role Name">
+                                <span asp-validation-for="RoleName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="SaveRole" value="Update Role" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">User In This Role</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @if (Model.Users.Any())
+                        {
+                            var count = 0;
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>User</th>
+                                </tr>
+
+                                @foreach (var user in Model.Users)
+                                {
+                                    <tr>
+                                        <td>
+                                            @(++count)
+                                        </td>
+                                        <td>
+                                            @user
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                        else
+                        {
+                            <h5>None at the movement</h5>
+                        }
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="EditUsersInRole" asp-controller="Roll" asp-route-roleId="@Model.Id" class="btn btn-primary" style="width:auto">Add Or Remove User</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

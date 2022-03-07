@@ -1,0 +1,126 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+@inject ISubCategoryRepository _subcategory
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Category";
+}
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a asp-action="Index" asp-controller="Home"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="shop__sidebar">
+                    <div class="sidebar__categories">
+                        <div class="section-title">
+                            <h4>Categories</h4>
+                        </div>
+                        <div class="categories__accordion">
+                            <div class="accordion" id="accordionExample">
+                                @foreach (var category in ViewBag.Category)
+                                {
+                                    var count = 0;
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a data-toggle="collapse" data-target="#collapse@(++count)">@(category.CategoryName)</a>
+                                        </div>
+                                        <div id="collapse@(count)" class="collapse show" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    @foreach (var subcategory in _subcategory.getAllActiveSubCategories(category.Id))
+                                                    {
+                                                        <li><a asp-controller="Home" asp-action="SubCategory" asp-route-slug="@subcategory.Slug">@(subcategory.SubCategoryName)</a></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="row">
+                    @foreach (var product in ViewBag.Products)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@(product.UrlImage)">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="@(product.UrlImage)" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@(product.Id)"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a asp-controller="Home" asp-action="ProductDetails" asp-route-slug="@(product.Slug)">@(product.ProductName)</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">@product.DiscountPrice.ToString("c")<span>@product.OrginalPrice.ToString("c")</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <style>
+                        .pageUl {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+                            overflow: hidden;
+                        }
+                        .pageLi {
+                            margin-right:5px;
+                            display:inline-flex;
+                            justify-content:center;
+                            align-items:center;
+                        }
+                        .pageUl > .active {
+                            font-family: sans-serif;
+                            background: #000;
+                            color: white;
+                            height: 40px;
+                            width: 40px;
+                            border: 1px solid #f2f2f2;
+                            border-radius: 50%;
+                            font-weight: 600;
+                        }
+                    </style>
+                    <div class="col-lg-12">
+                        @Html.PagedListPager((IPagedList)ViewBag.Products,
+                             page => Url.Action("SubCategory", "Home",
+                                new
+                                {
+                                    page = page
+                                }), new PagedListRenderOptions()
+                                {
+                                    ContainerDivClasses = new List<string> { "pagination__option" },
+                                    UlElementClasses = new List<string> { "text-center" , "pageUl" },
+                                    LiElementClasses = new List<string> { "pageLi" }
+                                })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->

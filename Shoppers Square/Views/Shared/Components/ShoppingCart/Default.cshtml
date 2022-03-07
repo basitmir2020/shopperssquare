@@ -1,0 +1,11 @@
+﻿@model int
+
+@if (Model > 0)
+{
+    <li>
+        <a asp-controller="Orders" asp-action="Cart">
+            <span class="icon_bag_alt"></span>
+            <div class="tip">@Model</div>
+        </a>
+    </li>
+}

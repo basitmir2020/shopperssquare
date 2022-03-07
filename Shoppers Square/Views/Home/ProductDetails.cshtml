@@ -1,0 +1,131 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+@inject IProductRepository _product
+@model ProductModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Product Details";
+}
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> Home</a>
+                    <a href="#">Women’s </a>
+                    <span>@Model.ProductName</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__left product__thumb nice-scroll">
+                        @for (int i = 0; i < Model.ProductImage.Count(); i++)
+                        {
+                            <a class="@(i==0 ? " active" : "pt")" href="@Model.ProductImage[i].ImagesUrl">
+                                <img src="@Model.ProductImage[i].ImagesUrl" alt="@Model.ProductImage[i].ImageName">
+                            </a>
+                        }
+                    </div>
+                    <div class="product__details__slider__content">
+                        <div class="product__details__pic__slider owl-carousel">
+                            <img class="product__big__img" src="@Model.UrlImage" />
+                            @for (int i = 0; i < Model.ProductImage.Count(); i++)
+                            {
+                                var count = 0;
+                                <img data-hash="product-@(++count)" class="product__big__img" src="@Model.ProductImage[i].ImagesUrl" alt="@Model.ProductImage[i].ImageName">
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3>@Model.ProductName <span>Brand: @Model.ProductBrand</span></h3>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="product__details__price">@Model.DiscountPrice.ToString("c") <span>@Model.OrginalPrice.ToString("c")</span></div>
+                    @foreach (var shortDEC in Model.ProductDescription)
+                    {
+                        <p>@shortDEC.Slug.ToString()</p>
+                    }
+                    <div class="product__details__widget">
+                        <ul>
+                            <li>
+                                <span>Availability:</span>
+                                <div class="stock__checkbox">
+                                    In Stock
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__details__button mt-5">
+                        <a asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@(Model.Id)" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            @foreach (var shortDEC in Model.ProductDescription)
+                            {
+                                @Html.Raw(HttpUtility.HtmlDecode(shortDEC.LongDescription))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="related__title">
+                    <h5>RELATED PRODUCTS</h5>
+                </div>
+            </div>
+            @foreach (var relatedProduct in _product.RelatedProductsBySubcategoryId(Model.SubCategoryId))
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="@relatedProduct.UrlImage">
+                            <div class="label new">New</div>
+                            <ul class="product__hover">
+                                <li><a href="@relatedProduct.UrlImage" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@(relatedProduct.Id)"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a asp-controller="Home" asp-action="ProductDetails" asp-route-slug="@(relatedProduct.Slug)">@relatedProduct.ProductName</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">@relatedProduct.DiscountPrice.ToString("c")</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->

@@ -1,0 +1,47 @@
+﻿@model  ImageModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Edit Image";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Product Image</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form enctype="multipart/form-data" method="POST">
+                        <input type="hidden" asp-for="Id"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductId">Select Product</label>
+                                <select asp-for="ProductId"
+                                        class="custom-select" asp-items="ViewBag.ListProducts">
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <img width="80" src="@Model.ImagesUrl" asp-append-version="true" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="isActive">Image Status</label>
+                                <select asp-for="isActive" disabled
+                                        class="custom-select"
+                                        asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-top:31px;">
+                                <input type="submit" value="Delete Photo" class="btn btn-danger">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

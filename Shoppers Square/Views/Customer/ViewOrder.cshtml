@@ -1,0 +1,61 @@
+﻿@model List<OrderItemModel>
+@{
+    Layout = "_Customer";
+    ViewData["Title"] = "View Order";
+    var counter = 0;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Order Details</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            @foreach (var orderItem in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @(++counter)
+                                        </td>
+                                        <td>
+                                            <img width="50" class="rounded" src="@(orderItem.Product.UrlImage)" />
+                                        </td>
+                                        <td>
+                                            @(orderItem.Amount)
+                                        </td>
+                                        <td>
+                                            @(orderItem.Price.ToString("c"))
+                                        </td>
+                                        <td>@((orderItem.Product.DiscountPrice * orderItem.Amount).ToString("c"))</td>
+                                    </tr>
+                                </tbody>
+                            }
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th>Grand Total</th>
+                                    <td>@(Model.Select(m => m.Price * m.Amount).Sum().ToString("c"))</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

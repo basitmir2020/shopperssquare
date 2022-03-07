@@ -1,0 +1,284 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+@inject ICategoryRepository _category
+@inject ISubCategoryRepository _subcategory
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <base href="http://localhost:5000" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shoppers Square</title>
+    <link rel="icon" type="image/png" href="~/LogoMakerCa-1638341513564.ico" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/elegant-icons.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            @await Component.InvokeAsync("ShoppingCart")
+        </ul>
+        <div class="offcanvas__logo">
+            <a asp-action="index" asp-controller="Home">
+                <img class="brand" src="img/logo.png" alt="">
+            </a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            @if (signInManager.IsSignedIn(User))
+            {
+                <a>@User.Identity.Name</a>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                }
+                else
+                {
+                    <a asp-controller="Customer" asp-action="Dashboard">Dashboard</a>
+                }
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="SignIn">Login</a>
+                <a asp-controller="Account" asp-action="SignUp">Register</a>
+            }
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2 col-lg-1">
+                    <div class="header__logo">
+                        <a asp-action="index" asp-controller="Home">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">
+                                <a asp-action="index" asp-controller="Home">Home</a>
+                            </li>
+                            @foreach (var category in _category.GetAllActiveCategories())
+                            {
+                                <li>
+                                    <a asp-controller="Home" asp-action="Category" asp-route-slug="@category.Slug">@category.CategoryName</a>
+                                    @if (_subcategory.getAllActiveSubCategories(category.Id) != null)
+                                    {
+                                        <ul class="dropdown">
+                                            @foreach (var subcategory in _subcategory.getAllActiveSubCategories(category.Id))
+                                            {
+                                                <li>
+                                                    <a asp-controller="Home" asp-action="SubCategory" asp-route-slug="@subcategory.Slug">@subcategory.SubCategoryName</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
+                            <li><a asp-action="Contact" asp-controller="Home">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-4">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <a>@User.Identity.Name</a>
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Customer" asp-action="Dashboard">Dashboard</a>
+                                }
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="SignIn">Login</a>
+                                <a asp-controller="Account" asp-action="SignUp">Register</a>
+                            }
+                        </div>
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            @await Component.InvokeAsync("ShoppingCart")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+    <!-- Footer Section Start Here -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a asp-controller="Home" asp-action="Index"><img src="img/logo.png" style="width:50%" alt=""></a>
+                        </div>
+                        <p>
+                            It is a retail company established in Mumbai, India in 2009.
+                            It has stores located across most of the metro cities in India
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Category" asp-route-slug="electronics">Electronice</a></li>
+                            <li><a asp-controller="Home" asp-action="Category" asp-route-slug="footwear">Footwear</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            @{
+                                if (signInManager.IsSignedIn(User))
+                                {
+                                    <li><a>@User.Identity.Name</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-controller="Account" asp-action="SignIn">Login</a></li>
+                                    <li><a asp-controller="Account" asp-action="SignUp">Register</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | Designed And Developed <i class="fa fa-heart" aria-hidden="true"></i> By <a href="#" target="_blank">Basit Yousuf Mir</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form method="get" asp-controller="Home" asp-action="Search"  class="search-model-form">
+                <input type="text" name="q" value="@ViewBag.keyword" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/mixitup.min.js"></script>
+    <script src="~/js/jquery.countdown.min.js"></script>
+    <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.nicescroll.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

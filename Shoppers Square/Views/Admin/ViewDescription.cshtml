@@ -1,0 +1,56 @@
+﻿@model ProductDescriptionModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "View Description";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">View Product Description</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductId">Product Name</label>
+                                <select asp-for="ProductId" disabled
+                                        class="custom-select" asp-items="ViewBag.ListProducts">
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">Short Description</label>
+                                <textarea readonly type="text" asp-for="Slug" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label asp-for="LongDescription">Product Brand</label>
+                                <textarea disabled asp-for="LongDescription" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="isActive">Product Status</label>
+                                <select disabled asp-for="isActive"
+                                        class="custom-select"
+                                        asp-items="Html.GetEnumSelectList<StatusEnum>()">
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-top:31px;">
+                                <input type="submit" value="List Descriptions" class="btn btn-secondary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('LongDescription');
+    });
+</script>

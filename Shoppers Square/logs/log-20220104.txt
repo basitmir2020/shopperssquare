@@ -1,0 +1,338 @@
+2022-01-Tuesday 14:32:58.132 +05:30 [INF] Application Started
+2022-01-Tuesday 14:32:58.579 +05:30 [INF] User profile is available. Using 'C:\Users\basiit\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-01-Tuesday 14:32:58.861 +05:30 [INF] Now listening on: http://192.168.139.158:5000
+2022-01-Tuesday 14:32:58.861 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-01-Tuesday 14:32:58.861 +05:30 [INF] Hosting environment: Development
+2022-01-Tuesday 14:32:58.861 +05:30 [INF] Content root path: C:\Users\basiit\source\repos\Shoppers Square\Shoppers Square
+2022-01-Tuesday 14:32:59.336 +05:30 [INF] Request starting HTTP/1.1 GET http://192.168.139.158:5000/  
+2022-01-Tuesday 14:32:59.505 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Shoppers_Square.Controllers.HomeController (Shoppers Square).
+2022-01-Tuesday 14:32:59.632 +05:30 [INF] Executing ViewResult, running view Index.
+2022-01-Tuesday 14:33:00.366 +05:30 [INF] Entity Framework Core 3.1.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-01-Tuesday 14:33:01.106 +05:30 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+WHERE ([s].[isActive] = 1) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.199 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+WHERE ([s].[isActive] = 1) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.334 +05:30 [INF] Executed DbCommand (59ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:01.391 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:01.395 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:01.397 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:01.462 +05:30 [INF] Accessing expired session, Key:f0b5e45d-ac64-6e9a-6aed-81f957040e4b
+2022-01-Tuesday 14:33:01.496 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__ShoppingCartId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Amount], [s].[ProductId], [s].[ShoppingCartId], [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+FROM [Identity].[ShoppingCartItems] AS [s]
+LEFT JOIN [Identity].[Product] AS [p] ON [s].[ProductId] = [p].[Id]
+WHERE [s].[ShoppingCartId] = @__ShoppingCartId_0
+2022-01-Tuesday 14:33:01.522 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Category] AS [c]
+WHERE ([c].[isActive] = 1) AND ([c].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.559 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.562 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.565 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.566 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.567 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.568 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:01.680 +05:30 [INF] Executed ViewResult - view Index executed in 2067.8338ms.
+2022-01-Tuesday 14:33:01.681 +05:30 [INF] Executed action Shoppers_Square.Controllers.HomeController.Index (Shoppers Square) in 2175.3339ms
+2022-01-Tuesday 14:33:01.688 +05:30 [INF] Session started; Key:f0b5e45d-ac64-6e9a-6aed-81f957040e4b, Id:423b63a1-44c8-721b-2383-a47deecbfa37
+2022-01-Tuesday 14:33:01.713 +05:30 [INF] Request finished in 2379.3371ms 200 text/html; charset=utf-8
+2022-01-Tuesday 14:33:23.112 +05:30 [INF] Request starting HTTP/1.1 GET http://192.168.139.158:5000/  
+2022-01-Tuesday 14:33:23.115 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Shoppers_Square.Controllers.HomeController (Shoppers Square).
+2022-01-Tuesday 14:33:23.119 +05:30 [INF] Executing ViewResult, running view Index.
+2022-01-Tuesday 14:33:23.165 +05:30 [INF] Entity Framework Core 3.1.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-01-Tuesday 14:33:23.167 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+WHERE ([s].[isActive] = 1) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.168 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+WHERE ([s].[isActive] = 1) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.169 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:23.171 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:23.173 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:23.174 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:33:23.178 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__ShoppingCartId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Amount], [s].[ProductId], [s].[ShoppingCartId], [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+FROM [Identity].[ShoppingCartItems] AS [s]
+LEFT JOIN [Identity].[Product] AS [p] ON [s].[ProductId] = [p].[Id]
+WHERE [s].[ShoppingCartId] = @__ShoppingCartId_0
+2022-01-Tuesday 14:33:23.180 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Category] AS [c]
+WHERE ([c].[isActive] = 1) AND ([c].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.181 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.182 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.184 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.184 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.186 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.186 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:33:23.188 +05:30 [INF] Executed ViewResult - view Index executed in 69.771ms.
+2022-01-Tuesday 14:33:23.189 +05:30 [INF] Executed action Shoppers_Square.Controllers.HomeController.Index (Shoppers Square) in 73.6202ms
+2022-01-Tuesday 14:33:23.190 +05:30 [INF] Request finished in 78.6592ms 200 text/html; charset=utf-8
+2022-01-Tuesday 14:34:29.534 +05:30 [INF] Request starting HTTP/1.1 GET http://192.168.139.158:5000/  
+2022-01-Tuesday 14:34:29.551 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Shoppers_Square.Controllers.HomeController (Shoppers Square).
+2022-01-Tuesday 14:34:29.555 +05:30 [INF] Executing ViewResult, running view Index.
+2022-01-Tuesday 14:34:29.569 +05:30 [INF] Entity Framework Core 3.1.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-01-Tuesday 14:34:29.573 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+WHERE ([s].[isActive] = 1) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.575 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+WHERE ([s].[isActive] = 1) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.576 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:34:29.578 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:34:29.579 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:34:29.580 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32), @__Slug_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Dated], [t].[DiscountPrice], [t].[OrginalPrice], [t].[ProductBrand], [t].[ProductName], [t].[Slug], [t].[SubCategoryId], [t].[UrlImage], [t].[isActive], [t].[isDelete]
+FROM (
+    SELECT TOP(@__p_0) [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+    FROM [Identity].[Product] AS [p]
+    ORDER BY [p].[Id] DESC
+) AS [t]
+INNER JOIN [Identity].[Subcategory] AS [s] ON [t].[SubCategoryId] = [s].[Id]
+WHERE (([s].[Slug] = @__Slug_1) AND ([t].[isActive] = 1)) AND ([t].[isDelete] = 0)
+ORDER BY [t].[Id] DESC
+2022-01-Tuesday 14:34:29.582 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__ShoppingCartId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Amount], [s].[ProductId], [s].[ShoppingCartId], [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+FROM [Identity].[ShoppingCartItems] AS [s]
+LEFT JOIN [Identity].[Product] AS [p] ON [s].[ProductId] = [p].[Id]
+WHERE [s].[ShoppingCartId] = @__ShoppingCartId_0
+2022-01-Tuesday 14:34:29.583 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Category] AS [c]
+WHERE ([c].[isActive] = 1) AND ([c].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.584 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.585 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.586 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.587 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.588 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.589 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:29.593 +05:30 [INF] Executed ViewResult - view Index executed in 38.0657ms.
+2022-01-Tuesday 14:34:29.593 +05:30 [INF] Executed action Shoppers_Square.Controllers.HomeController.Index (Shoppers Square) in 41.6925ms
+2022-01-Tuesday 14:34:29.594 +05:30 [INF] Session started; Key:e8d475af-e7bb-c1a9-e869-a7736ec303f7, Id:f35c4fe6-5ada-0fd7-06fc-8f52ae41eb13
+2022-01-Tuesday 14:34:29.594 +05:30 [INF] Request finished in 61.0431ms 200 text/html; charset=utf-8
+2022-01-Tuesday 14:34:52.168 +05:30 [INF] Request starting HTTP/1.1 GET http://192.168.139.158:5000/Account/SignIn  
+2022-01-Tuesday 14:34:52.180 +05:30 [INF] Route matched with {action = "SignIn", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult SignIn() on controller Shoppers_Square.Controllers.AccountController (Shoppers Square).
+2022-01-Tuesday 14:34:52.214 +05:30 [INF] Executing ViewResult, running view SignIn.
+2022-01-Tuesday 14:34:52.280 +05:30 [INF] Entity Framework Core 3.1.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-01-Tuesday 14:34:52.282 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__ShoppingCartId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Amount], [s].[ProductId], [s].[ShoppingCartId], [p].[Id], [p].[Dated], [p].[DiscountPrice], [p].[OrginalPrice], [p].[ProductBrand], [p].[ProductName], [p].[Slug], [p].[SubCategoryId], [p].[UrlImage], [p].[isActive], [p].[isDelete]
+FROM [Identity].[ShoppingCartItems] AS [s]
+LEFT JOIN [Identity].[Product] AS [p] ON [s].[ProductId] = [p].[Id]
+WHERE [s].[ShoppingCartId] = @__ShoppingCartId_0
+2022-01-Tuesday 14:34:52.284 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Category] AS [c]
+WHERE ([c].[isActive] = 1) AND ([c].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.286 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.288 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.289 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.290 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.291 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.292 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[CategoryId], [s].[Dated], [s].[Slug], [s].[SubCategoryName], [s].[isActive], [s].[isDelete], [c].[Id], [c].[CategoryName], [c].[Dated], [c].[ImageUrl], [c].[Slug], [c].[isActive], [c].[isDelete]
+FROM [Identity].[Subcategory] AS [s]
+INNER JOIN [Identity].[Category] AS [c] ON [s].[CategoryId] = [c].[Id]
+WHERE (([c].[Id] = @__CategoryId_0) AND ([s].[isActive] = 1)) AND ([s].[isDelete] = 0)
+2022-01-Tuesday 14:34:52.294 +05:30 [INF] Executed ViewResult - view SignIn executed in 106.9584ms.
+2022-01-Tuesday 14:34:52.295 +05:30 [INF] Executed action Shoppers_Square.Controllers.AccountController.SignIn (Shoppers Square) in 114.8794ms
+2022-01-Tuesday 14:34:52.296 +05:30 [INF] Request finished in 128.0382ms 200 text/html; charset=utf-8
+2022-01-Tuesday 14:35:43.591 +05:30 [INF] Application is shutting down...

@@ -1,0 +1,54 @@
+﻿@model CategoryModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Category";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Create Product Category</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="CategoryName">Category Name</label>
+                                <input asp-for="CategoryName" type="text" class="form-control" placeholder="Enter Category" onkeyup="generateSlug($(this).val())">
+                                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">Category Slug</label>
+                                <input type="text" asp-for="Slug" class="form-control" placeholder="Enter Category Slug">
+                                <span asp-validation-for="Slug" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="CategoryImage">Category Image</label>
+                                <div class="custom-file">
+                                    <input asp-for="CategoryImage" id="customFile" class="custom-file-input">
+                                    <label class="custom-file-label" for="customFile">Choose File</label>
+                                </div>
+                                <span asp-validation-for="CategoryImage" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6" style="margin-top:31px;">
+                                <input type="submit" id="SaveCat" value="Save Category" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });
+</script>

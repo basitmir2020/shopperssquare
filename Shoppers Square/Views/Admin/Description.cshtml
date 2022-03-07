@@ -1,0 +1,50 @@
+﻿@model ProductDescriptionModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Description";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Product Description</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductId">Select Product</label>
+                                <select asp-for="ProductId"
+                                        class="custom-select" asp-items="ViewBag.ListProducts">
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">Short Description</label>
+                                <textarea asp-for="Slug" class="form-control" placeholder="Enter Short Description"></textarea>
+                                <span asp-validation-for="Slug" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label asp-for="LongDescription">Long Description</label>
+                                <textarea asp-for="LongDescription" class="form-control" placeholder="Enter Long Description"></textarea>
+                                <span asp-validation-for="LongDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save Description" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('LongDescription');
+    });
+</script>

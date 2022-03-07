@@ -1,0 +1,89 @@
+﻿@model ProductModel
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Products";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Create Product</h6>
+                </div>
+                <div class="card-body">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="CategoryId">Select Category</label>
+                                <select asp-for="CategoryId"
+                                        class="custom-select" asp-items="ViewBag.ListCategories">
+                                </select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="SubCategoryId">SubCategory Name</label>
+                                <select asp-for="SubCategoryId"
+                                        class="custom-select"
+                                        asp-items="ViewBag.ListSubCategories">
+                                </select>
+                                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductName">Product Name</label>
+                                <input type="text" asp-for="ProductName" class="form-control" placeholder="Enter Product Name" onkeyup="generateSlug($(this).val())">
+                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Slug">Product Slug</label>
+                                <input type="text" asp-for="Slug" class="form-control" placeholder="Enter Product Slug">
+                                <span asp-validation-for="Slug" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="ProductBrand">Product Brand</label>
+                                <input type="text" asp-for="ProductBrand" class="form-control" placeholder="Enter Product Brand">
+                                <span asp-validation-for="ProductBrand" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="OrginalPrice">Product OrginalPrice</label>
+                                <input type="text" asp-for="OrginalPrice" class="form-control" placeholder="Enter Product OrginalPrice">
+                                <span asp-validation-for="OrginalPrice" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="DiscountPrice">Product DiscountPrice</label>
+                                <input type="text" asp-for="DiscountPrice" class="form-control" placeholder="Enter Product DiscountPrice">
+                                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Image">Upload Image</label>
+                                <div class="custom-file">
+                                    <input asp-for="Image" id="customFile" class="custom-file-input">
+                                    <label class="custom-file-label" for="customFile">Choose File</label>
+                                </div>
+                                <span asp-validation-for="Image" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save Product" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });
+</script>

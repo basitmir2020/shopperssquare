@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CategoryModel>
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Category List";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">List Categories</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>S.No</th>
+                                <th>Category Name</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            @if (Model.Any())
+                            {
+                                var counter = 0;
+                                foreach (var role in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @(++counter)
+                                        </td>
+                                        <td>
+                                            @role.CategoryName
+                                        </td>
+                                        <td>
+                                            <img src="@role.ImageUrl" class="rounded" height="50" />
+                                        </td>
+                                        <td>
+                                            @if (@role.isActive == 0)
+                                            {
+                                                <span class="btn-danger rounded-pill badge-pill btn-sm">Pending</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-success rounded-pill badge-pill btn-sm">Activated</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-action="EditCategory" asp-controller="Admin" asp-route-id="@role.Id" style="cursor:pointer;" class="btn btn-circle btn-success">
+                                                <i style="color:white;" class="fa fa-pen"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="DeleteCategory" asp-controller="Admin" asp-route-id="@role.Id" style="cursor:pointer;" class="btn btn-circle btn-danger">
+                                                <i style="color:white;" class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
