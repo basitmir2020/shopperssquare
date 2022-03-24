@@ -77,7 +77,8 @@ namespace Shoppers_Square
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
-            services.AddRouting(options =>
+            services.AddRouting(
+                options =>
                 {
                     options.AppendTrailingSlash = true;
                     options.LowercaseQueryStrings = true;
@@ -103,15 +104,11 @@ namespace Shoppers_Square
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseSession();
             app.UseCookiePolicy();
-
-            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

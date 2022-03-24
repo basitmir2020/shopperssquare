@@ -30,15 +30,14 @@
                         </div>
                         <div class="categories__accordion">
                             <div class="accordion" id="accordionExample">
-                                @{var count = 0;}
                                 @foreach (var category in ViewBag.Category)
                                 {
-                                     ++count;
+                                    var count = 0;
                                     <div class="card">
-                                        <div class="card-heading @((count == 1) ? "active" : "" )">
-                                            <a data-toggle="collapse" data-target="#collapse@(count)">@(category.CategoryName)</a>
+                                        <div class="card-heading active">
+                                            <a data-toggle="collapse" data-target="#collapse@(++count)">@(category.CategoryName)</a>
                                         </div>
-                                        <div id="collapse@(count)" class="collapse @((count == 1) ? "show" : "" )" data-parent="#accordionExample">
+                                        <div id="collapse@(count)" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
                                                     @foreach (var subcategory in _subcategory.getAllActiveSubCategories(category.Id))
