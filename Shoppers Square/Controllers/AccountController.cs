@@ -38,11 +38,11 @@ namespace Shoppers_Square.Controllers
             if (ModelState.IsValid)
             {
                 var email = await userManager.FindByEmailAsync(loginViewModel.Email);
-                if(email != null && !email.EmailConfirmed && (await userManager.CheckPasswordAsync(email,loginViewModel.Password)))
+                /*if(email != null && !email.EmailConfirmed && (await userManager.CheckPasswordAsync(email,loginViewModel.Password)))
                 {
                     TempData["ErrorMessage"] = "Email Not Confirmed Yet!";
                     return RedirectToAction(nameof(ConfirmAccount));
-                }
+                }*/
 
                 var result = await signInManager.PasswordSignInAsync(
                     loginViewModel.Email, 
@@ -121,18 +121,17 @@ namespace Shoppers_Square.Controllers
                 var result = await userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
-                    var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var confirmationLink = Url.Action("ConfirmEmail", "Account", 
-                        new { userId = user.Id, token = token },Request.Scheme);
-                   // logger.Log(LogLevel.Warning, confirmationLink);
-                    await _email.SendEmailTest(registerViewModel.Name,registerViewModel.Email,confirmationLink,"Confirm Account");
+                    //var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //var confirmationLink = Url.Action("ConfirmEmail", "Account", 
+                       // new { userId = user.Id, token = token },Request.Scheme);
+                    //await _email.SendEmailTest(registerViewModel.Name,registerViewModel.Email,confirmationLink,"Confirm Account");
                     if (signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
                     {
                         return RedirectToAction("Dashboard", "Admin");
                     }
-                    ViewBag.ErrorTitle = "Registration Successful!";
-                    ViewBag.ErrorMessage = "Confirm Your Email!";
+                    TempData["SUCCESSMESSAGE"] = "Registration Successfull!";
                     return RedirectToAction(nameof(SignIn));
+                    //ViewBag.ErrorTitle = "Registration Successful!";
                 }
                 foreach (var error in result.Errors)
                 {
@@ -212,26 +211,28 @@ namespace Shoppers_Square.Controllers
                 var user = await userManager.FindByEmailAsync(forgotPasswordViewModel.Email);
                 if(user !=null)
                 {
-                    if (await userManager.IsEmailConfirmedAsync(user))
-                    {
-                        var token = await userManager.GeneratePasswordResetTokenAsync(user);
-                        var passwordResentLink = Url.Action("ResetPassword", "Account",
-                            new { email = forgotPasswordViewModel.Email, token = token }, Request.Scheme);
-                        await _email.SendEmailTest(user.Name, user.Email, passwordResentLink, "Reset Password");
-                        //logger.Log(LogLevel.Warning, passwordResentLink);
-                        ViewBag.forgot = "Password Link Sent!";
-                        return View();
-                    }
-                    else
-                    {
-                        ViewBag.ErrorMessage = "Email Not Confirmed!";
-                        return View(nameof(SignIn));
-                    }
+
+                    return RedirectToAction(nameof(ResetPassword));
+                    /* if (await userManager.IsEmailConfirmedAsync(user))
+                     {
+                         //var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                         *//*var passwordResentLink = Url.Action("ResetPassword", "Account",
+                             new { email = forgotPasswordViewModel.Email, token = token }, Request.Scheme);*/
+                    /*  await _email.SendEmailTest(user.Name, user.Email, passwordResentLink, "Reset Password");*//*
+                      //logger.Log(LogLevel.Warning, passwordResentLink);
+                      *//*ViewBag.forgot = "Password Link Sent!";*//*
+
+                  }
+                  else
+                  {
+                      TempData["ERRORMESSAGE"] = "Email Not Confirmed!";
+                      return RedirectToAction(nameof(SignIn));
+                  }*/
                 }
                 else
                 {
-                    ViewBag.sign = "User Not Registered!";
-                    return View(nameof(SignUp));
+                    TempData["ERRORMESSAGE"] = "User Not Registered!";
+                    return RedirectToAction(nameof(SignUp));
                 }
             }
 
@@ -239,13 +240,9 @@ namespace Shoppers_Square.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public IActionResult ResetPassword(string token,string email)
+        [HttpGet()]
+        public IActionResult ResetPassword()
         {
-            if(token==null || email == null)
-            {
-                ModelState.AddModelError("", "Invalid Token!");
-            }
             return View();
         }
         [AllowAnonymous]
@@ -257,10 +254,10 @@ namespace Shoppers_Square.Controllers
                 var user = await userManager.FindByEmailAsync(resetPasswordViewModel.Email);
                 if(user != null)
                 {
-                    var result = await userManager.ResetPasswordAsync(user, resetPasswordViewModel.Token, resetPasswordViewModel.Password);
+                    /*var result = await userManager.ResetPasswordAsync(user, resetPasswordViewModel.Password);*/
                     if (result.Succeeded)
                     {
-                        ViewBag.ErrorTitle = "Password Changed Successfully!";
+                        TempData["SUCCESSMESSAGE"] = "Password Changed Successfully!";
                         return RedirectToAction(nameof(SignIn));
                     }
                     foreach(var error in result.Errors)
@@ -271,7 +268,7 @@ namespace Shoppers_Square.Controllers
                 }
                 else
                 {
-                    ViewBag.sign = "User Not Valid";
+                    TempData["ERRORMESSAGE"] = "User Is Not Registered!";
                     RedirectToAction(nameof(SignUp));
                 }
             }

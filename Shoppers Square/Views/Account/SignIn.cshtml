@@ -11,13 +11,13 @@
                     <div class="card shadow-2-strong" style="border-radius: 1rem;">
                         <div class="card-body p-5">
                             <h3 class="text-center mb-5"> Sign in</h3>
-                            @if (@ViewBag.ErrorTitle != null)
+                            @if (TempData["SUCCESSMESSAGE"] != null)
                             {
-                                <div class="alert alert-success">@ViewBag.ErrorTitle</div>
+                                <div class="alert alert-success">@TempData["SUCCESSMESSAGE"]</div>
                             }
-                            @if (@ViewBag.ErrorMessage != null)
+                            @if (TempData["ERRORMESSAGE"] != null)
                             {
-                                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                                <div class="alert alert-danger">@TempData["ERRORMESSAGE"]</div>
                             }
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <form method="post" asp-action="SignIn" asp-controller="Account">
